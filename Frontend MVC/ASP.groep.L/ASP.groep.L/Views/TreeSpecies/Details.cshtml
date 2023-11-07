@@ -1,0 +1,33 @@
+﻿@model TreeSpecies
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>TreeSpecies</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+    </dl>
+</div>
+<div>
+    @if (@User.Claims.Where(e => e.Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/role").First().Value == "MVC Admin")
+    {
+        <a asp-action="Update" asp-route-id="@Model?.Id">Update</a>
+    }
+    <a asp-action="Index">Back to List</a>
+</div>

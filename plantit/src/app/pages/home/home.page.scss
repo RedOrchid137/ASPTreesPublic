@@ -1,0 +1,185 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600&display=swap');
+
+$nunito: 'Nunito', sans-serif;
+
+// .header-background {
+//     --background: #099324;
+//     --background: linear-gradient(120deg, #099324 0%, #99E916 100%);
+// }
+// ion-title{
+//     --color: #fff;
+// }
+
+ion-content{
+    font-family: $nunito;
+    --background: linear-gradient(180deg, #099324 0%, #99E916 100%);
+    .menu_btn{
+        position: relative;
+        top: 20px;
+        left: 10px;
+    }
+
+    .container{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: right;
+        align-items: center;
+        margin-top: -10px;
+        margin-right: 20px;
+    }
+
+    .top{
+        margin-top:2rem;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 20px;
+        .nameText{
+            p{
+                color: #fff;
+                margin-left: 25px;
+                margin-top: 0%;
+                font-size: 28px;
+                span{
+                    font-weight: bold;
+                }
+            }
+            h6{
+                margin-left: 25px;
+                font-size: 18px;
+                margin-top: -30px;
+                color: #EEE8AA;
+            }
+            small{
+                margin-left: 25px;
+                margin-top: --80px !important;
+                color: #99E916;
+                background-color: #fff;
+                padding: 5px 10px;
+                border-radius: 10px;
+            }
+        }
+        .imageThumbnail{
+            img{
+                width: 80px;
+                height: 80px;
+                border-radius: 50%;
+                border: 2px solid #fff;
+                margin-right: 20px !important;
+            }
+        }
+    }
+    
+    .middleBox{
+        margin-top: 2rem;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-items: center;
+        margin-left: 20px;
+        margin-right: 20px;
+        gap: 20px;
+
+        .firstDiv{
+            height: auto;
+            //background-color: #99E916;
+            background: linear-gradient(135deg,#099324 0%, #99E916 100%);
+            width: 100%;
+            border-radius: 20px;
+            border: 3px solid #000;
+            display: flex;
+            flex-direction: column;
+            flex-wrap: nowrap;
+            justify-content: center;
+            align-items: center;
+            img{
+                width: 60px;
+                height: 60px;
+                margin-top: 10px;
+            }
+            p{
+                font-size: 25px;
+                font-weight: bold;
+            }
+            h6{
+                margin-top: -20px;
+                color: #000;
+            }
+        }
+
+        .secondDiv{
+            height: auto;
+            //background-color: #99E916;
+            background: linear-gradient(135deg, #099324 0%, #99E916 100%);
+            width: 100%;
+            border-radius: 20px;
+            border: 3px solid #000;
+            display: flex;
+            flex-direction: column;
+            flex-wrap: nowrap;
+            justify-content: center;
+            align-items: center;
+            img{
+                width: 60px;
+                height: 60px;
+                margin-top: 10px;
+            }
+            p{
+                font-size: 25px;
+                font-weight: bold;
+            }
+            h6{
+                margin-top: -20px;
+                color: #000;
+            }
+        }
+    }
+
+    .bottomDiv{
+        height: auto;
+        background-color: #E0F2E4;
+        border-top-left-radius: 25px;
+        border-top-right-radius: 25px;
+        margin-top: -70px;
+        padding-top: 100px;
+        padding-bottom: 200px;
+
+        .gridDiv{
+            margin-left: 20px;
+            margin-right: 20px;
+
+            ion-card{
+                border: 2px solid green;
+
+                .headerItem{
+                    margin-left: -20px;
+                }
+            }
+            
+            #date{
+                color:blue;
+            }
+        }
+        p{
+            font-size: 14px;
+            line-height: 22px;
+            font-weight: 300;
+            color: #8c8c8c;
+
+            margin: 0;
+        }
+    }
+
+    .today{
+        --border-radius: 30px;
+        p{
+            font-weight: 400;
+            color: #099324;
+        }
+    }
+}
+

@@ -1,0 +1,33 @@
+<ion-content>
+    <div class="flexbox1">
+        <div style="color:--ion-color-tertiary;font-size:7vw;margin-bottom:2%;font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif ">PlantIT</div>
+        <img src="assets/PlantItLogo.png" class="PIlogo">
+        
+        <div class="flexbox2">
+            <ion-item lines="none">
+                <ion-label position="stacked">Username</ion-label>
+                <div id="borderDiv">
+                    <ion-input class="username" placeholder="Enter text" [formControl]="username" ngDefaultControl [clearInput]="true"></ion-input>
+                </div>
+            </ion-item>
+                <ion-item lines="none">
+                    <ion-label position="stacked">Password</ion-label>
+                    <div id="borderDiv">
+                        <ion-input class="password" placeholder="Enter text" [formControl]="password" ngDefaultControl [clearInput]="true"></ion-input>
+                    </div>
+            </ion-item>
+            <div class="forgotPwd">
+                <a href="/passwd-reset">Forgot Password</a>
+            </div>
+            <ion-button class="loginBut" (click)="login()" shape="round" color="primary">
+                Login
+            </ion-button>
+            <div class="dontHaveAcct">
+                <a href="/register"><h5>Don't have an account? Register here</h5></a>
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        <img id="treesLogin" src="assets/Trees.png"> 
+    </footer>
+</ion-content>

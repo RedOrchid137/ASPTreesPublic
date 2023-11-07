@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Site>
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-success">Sites</h2>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="Site" asp-action="Create" class="btn btn-outline-success">Add a new Site</a>
+        </div>
+    </div>
+    <br/>
+
+    @if (Model.Count() > 0)
+    {
+            <table class="table table-bordered table-striped" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Site ID</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach (var Site in Model)
+                {
+                    <tr>
+                        <td width="30%">@Site.Id</td>
+                        <td width="30%">@Site.Name</td>
+                        <td width="30%">@Site.Description</td>
+                        <td width="10%">
+                            <div class="w-100 btn-group" role="group">
+                                <a asp-controller="Site" asp-action="Update" asp-route-Id="@Site.Id" class="btn btn-success mx-1">Update</a>
+                                <a asp-controller="Site" asp-action="Details" asp-route-Id="@Site.Id" class="btn btn-secondary mx-1">Details</a>
+                                <a asp-controller="Site" asp-action="Delete" asp-route-Id="@Site.Id" class="btn btn-danger mx-1">Delete</a>
+                                <a href="@Site.BluePrint" class="btn btn-success mx-1" target="_blank">BluePrint</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+    }
+    else
+    {
+       <p>No items created yet</p>
+    }
+
+
+</div>

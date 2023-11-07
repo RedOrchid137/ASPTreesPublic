@@ -1,0 +1,16 @@
+.splashscreen {
+    padding-top: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  
+    img {
+      max-width: 100%;
+    }
+  
+    p {
+      font-size: 1.2em;
+      color: #888;
+    }
+  }

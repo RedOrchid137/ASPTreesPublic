@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar class="header-background">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Scan QR-Code</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [style.visibility]="content_visibility">
+  <ion-button expand="block" class="ion-margin" (click)="startScan()">Scan</ion-button>
+  <!-- <ion-row class="scan-button" [hidden]="!scanActive">
+    <ion-col class="ion-no-padding">
+      <ion-button expand="full" (click)="stopScan()">Stop scan</ion-button>
+    </ion-col>
+  </ion-row>
+  <div class="scan-box" [hidden]="!scanActive"></div> -->
+  <ion-button *ngIf="url" expand="block" class="ion-margin" href="{{url}}">Download PDF</ion-button>
+</ion-content>

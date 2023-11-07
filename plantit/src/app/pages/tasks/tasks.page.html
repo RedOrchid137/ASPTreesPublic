@@ -1,0 +1,90 @@
+<ion-header [translucent]="true">
+  <ion-toolbar class="row row-cols-1 row-cols-md-3 header-background" >
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-button style="display: inline-block" [fill]="dayMode" color="dark" (click)="ToggleMode()">Today's Tasks</ion-button>
+    <ion-button style="display: inline-block" [fill]="scheduleMode" color="dark" (click)="ToggleMode()">All Scheduled Tasks</ion-button>
+    <!-- <ion-button #productbtn (mouseenter)="dropdown=true" (mouseleave)="hideDropdown($event)" fill="clear" color="dark"
+      class="dropdown-btn" routerLink="/products" routerDirection="root" routerLinkActive="active-item">Products</ion-button>
+      <ion-icon slot="end"></ion-icon> -->
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+
+  <ion-searchbar animated="true" placeholder="Zoek in Tasks" show-clear-button="focus" (ionchange)="handleChange($event)"></ion-searchbar>
+  <ion-card *ngIf="filterTasks.length==0">
+    <ion-card-content>No Tasks Found</ion-card-content>
+  </ion-card>
+  
+  <div class="cards">
+    <div class="details">
+      <ion-card *ngFor="let task of filterTasks; let i = index">
+        <ion-card-header>
+          <ion-label  style="font-size:larger;"> {{getFormattedDate(task.scheduledStart)}}</ion-label>
+          <ion-card-subtitle [style.color]="task.priority === 2 ? 'red' : (task.priority === 0 ? 'green' : 'orange')">
+            Priority: {{getPriority(task.priority)}}
+          </ion-card-subtitle>
+          <div class="headerItem">
+            <ion-item>
+              <ion-icon [color]="task.priority === 2 ? 'danger' : (task.priority === 0 ? 'primary' : 'warning')" size="small" name="ellipse"></ion-icon>
+              <ion-label> {{task.name}} </ion-label>
+            </ion-item>
+          </div>
+        </ion-card-header>
+
+        <ion-card-content>
+          <!-- <ion-label style="color: red; font-weight: bold;"> [ID: {{task.id}}] - </ion-label> -->
+          <ion-label id="date" style="color: green; font-weight: bold; font-size: larger;">{{getFormattedDateHours(task.scheduledStart)}} - {{getFormattedDateHours(task.scheduledStop)}}</ion-label>
+          <!-- {{task?.description}} -->
+          <ion-label style="color: green">{{task.ZoneId}}</ion-label>
+        </ion-card-content>
+
+        <ion-row>
+          <ion-item button [routerLink]="task.id">
+            <ion-icon name="folder-open-outline"></ion-icon>
+            <p>More</p>
+          </ion-item>
+          <!-- <ion-item button (click)="update(item)">
+            <ion-icon name="refresh-outline"></ion-icon>
+            <p>Update </p>
+          </ion-item>  -->
+
+          <ion-item *ngIf="state==0" button (click)="startTask(task)" >
+            <ion-icon name="add-circle-outline"></ion-icon>
+            <p>Start Task</p>
+          </ion-item> 
+          <ion-item *ngIf="state==1" button (click)="stopTask(task)" >
+            <ion-icon name="add-circle-outline"></ion-icon>
+            <p>Complete Task</p>
+          </ion-item>
+          <!-- <ion-item button (click)="activateTask(task)" >
+            <ion-icon name="add-circle-outline"></ion-icon>
+            <p>Activate</p>
+          </ion-item> -->
+        </ion-row>
+      </ion-card>
+    </div>
+  </div>
+</ion-content>
+<ion-toolbar>
+  <ion-tabs>
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button (click) = "updateState(0)" [selected]="state==0">
+        <ion-icon name="list"></ion-icon>
+        <ion-label>To Do</ion-label>
+      </ion-tab-button>
+      <ion-tab-button (click) = "updateState(1)" [selected]="state==1">
+        <ion-icon name="time"></ion-icon>
+        <ion-label>In Progress</ion-label>
+      </ion-tab-button>
+      <ion-tab-button (click) = "updateState(2)" [selected]="state==2">
+        <ion-icon name="checkbox"></ion-icon>
+        <ion-label>Done</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
+</ion-toolbar>

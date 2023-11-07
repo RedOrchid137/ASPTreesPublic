@@ -1,0 +1,168 @@
+﻿@model ASP.groep.L.Domain.WorkSchedule
+    <div class="container">
+        @*<div asp-validation-summary="ModelOnly" class="text-danger"></div>*@
+
+        <div class="row">
+                <div class="row">
+                    <div class="col-sm">
+                        <h2 class="text-success">Add a WorkSchedule</h2>
+                        <div class="row">
+                        <div class="col md-6">
+                            <div class="row">
+                                <input type="button" id="addScheduleBut" value = "Create" class="btn btn-outline-success btn-block">     
+                            </div>
+          
+                        </div>
+                        <div class="col md-6">
+                            <div class="row">
+                                <button asp-action="Index" type="button" class="btn btn-outline-danger btn-block">Back</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-sm">
+                        <label asp-for="Employee"></label>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-sm">
+                        <select asp-for="EmployeeId" id="employee" class ="form-control" asp-items="ViewBag.EmployeeId"></select>
+                    </div>
+                </div>
+
+                <div class="row mt-2">
+                    <div class="col-sm">
+                        <label asp-for="Planner"></label>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-sm">
+                        <select asp-for="PlannerId" id="planner" class ="form-control" asp-items="ViewBag.PlannerId"></select>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-sm">
+                        <label asp-for="Description"></label>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-sm">
+                        <input asp-for="Description" id="description" class="form-control" />
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                </div>
+            @Html.Partial("Tasks",Model)
+        </div>
+    </div>
+
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script>
+var $j = jQuery.noConflict();
+var table = document.getElementById("tabletest")
+var tasks = []
+const Priority = {
+    Low: 0,
+    Medium: 1,
+    High: 2,
+}                
+
+function addListeners(){
+    let elList = Array.from(document.getElementsByClassName("btn btn-outline-danger removebut"))
+    elList.forEach(el=>{
+        el.addEventListener("click",()=>{
+            tasks.splice(parseInt(el.name), 1)
+            console.log("removing task")
+            refreshTable()
+        })
+    })
+}
+
+function updateTasks(task){
+    tasks.push(task)
+    refreshTable()
+    console.log(tasks)
+}
+
+function refreshTable(){
+    let count = 0
+    table.innerHTML = ``
+    tasks.forEach(task=>{
+    let actual
+    if(task.actualStart!=null && task.actualStop!=null){
+        actual = `<td width="15%">${task.actualStart} - ${task.actualStop}</td>`
+    }
+    else
+    {
+        actual = `<td width="15%">Not Completed Yet</td>`
+    }
+    table.innerHTML+=
+    `<tr>
+        <td>${task.Name}</td>
+        <td>${task.scheduledStart} - ${task.scheduledStop}</td>`
+        + actual+     
+        `
+        <td>${task.Priority}</td>
+        <td>                          
+            <button class="btn btn-outline-danger removebut" id="removebut" name="${count}">Remove From Schedule</button>
+        </td>
+        </tr>`
+    count++;
+})
+addListeners()
+$j.ajax({})
+}
+
+
+$("#addScheduleBut").click(async function (){
+    var t = $("input[name='__RequestVerificationToken']").val();
+
+        var schedule = {
+            Description: $('#description').val(),
+            PlannerId: parseInt($('#planner').val()),
+            EmployeeId: parseInt($('#employee').val()),
+            EmployeeTasks:tasks
+        };
+    
+        $j.ajax({
+            type: 'Post',
+            url: '/WorkSchedule/Create',
+            headers:
+            {
+                "RequestVerificationToken": t
+            },
+            data: JSON.stringify(schedule),
+            contentType:'application/json; charset=utf-8;',
+            success: function(suc) {
+                var wsId = suc.id
+                alert("Schedule Added Successfully")
+                tasks.forEach(task=>{
+                    console.log("posting task")
+                    task.WorkScheduleId = wsId
+                    $j.ajax({
+                        type: 'Post',
+                        url: '/EmployeeTask/Create',
+                        headers:
+                        {
+                            "RequestVerificationToken": t
+                        },
+                        data: JSON.stringify(task),
+                        contentType:'application/json; charset=utf-8;',
+                        success: function(suc) {
+                            console.log("success");                      
+                        },
+                        error: function(err) {
+
+                            console.log(err)
+                        }
+                    })});
+                window.location.href = "/WorkSchedule/Index"
+            },
+            error: function(err) {
+                alert(err.responseJSON["Message"]);
+            }
+        });
+    })
+</script>

@@ -1,0 +1,83 @@
+*{
+    color:var(--ion-color-primary);
+}
+.PIlogo{
+    width:20%; 
+    height:auto;
+}
+.flexbox1{
+    width:inherit;
+    justify-content: center;
+    align-items: center;
+    display:flex;
+    margin-top:20px;
+    flex-direction: column;
+    vertical-align: middle;
+}
+.flexbox2{
+    justify-content: center;
+    align-items: center;
+    display:flex;
+    margin-top:5%;
+    flex-direction: column;
+    width:70%;
+}
+
+ion-input.username {
+    --background: #fff;
+    --color: green;
+    --placeholder-color: gray;
+    --placeholder-opacity: .8;
+}
+ion-input.password {
+    --background: #fff;
+    --color: green;
+    --placeholder-color: gray;
+    --placeholder-opacity: .8;
+}
+#borderDiv{
+    border:solid var(--ion-color-primary);
+    border-radius: 30px;
+    margin-top: 10px;
+    padding-top:5px;
+    padding-bottom:5px;
+    padding-left:15px;
+    padding-right:15px;
+    width:100%;
+}
+ion-item{
+    --ion-item-background:white;
+    width: 100%;
+}
+ion-content{
+    --background:white;
+}
+.forgotPwd{
+    font-size: medium;
+    font-weight: bold;
+    text-align: right;
+    padding-right: 10%;
+    padding-top:2%;
+    padding-bottom:2%;
+    width:100%;
+}
+.dontHaveAcct{
+    font-size: smaller;
+    text-align: center;
+}
+.loginBut{
+    width:90%;
+}
+#treesLogin{
+    width:100%;
+}
+.footer{
+    margin-top: 70px;
+    margin-bottom:0;
+    width:100%;
+    background-color: #E0F2E4;
+    
+    img{
+        margin-top: -60px;
+    }
+}

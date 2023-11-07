@@ -1,0 +1,55 @@
+﻿@*@model ASP.groep.L.Domain.QRCode
+
+<form method="post" asp-action="Create">
+    <div class="border p-3">
+        <div class="form-group row">
+            <h2 class="text-black-50 pl-3">Add QRCode</h2>
+        </div>
+        <div class="row">
+            <div class="col-12">
+
+                <div class="mb-3 row">
+                    <div class="col-12">
+                        <label asp-for="PicturePath"></label>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <div class="col-16">
+                        <input asp-for="PicturePath" class="form-control" />
+                        <span asp-validation-for="PicturePath" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    <div class="col-12">
+                        <label asp-for="Zone"></label>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <div class="col-16">
+                        <input asp-for="Zone" class="form-control" />
+                        <span asp-validation-for="Zone" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    <div class="col-8 offset-2 row">
+                        <div class="col">
+                            <input type="submit" class="btn btn-info w-75" value="Create" />
+                        </div>
+                        <div class="col">
+                            <a asp-action="Index" class="btn btn-danger w-75">Back</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</form>*@
+
+@*@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}*@

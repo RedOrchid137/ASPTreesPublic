@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar class="header-background">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/trees"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ tree?.name }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngIf="tree as tree;">
+    <img [src]="tree.picturePath" />
+
+    <ion-card-header>
+      <ion-card-title>{{ tree.name }}</ion-card-title>
+      <!-- <p>{{ tree.zone.name }}</p> -->
+    </ion-card-header>
+    <ion-card-content>
+      <ion-label color="medium">{{ tree.description }}</ion-label>
+    </ion-card-content>
+    <ion-button expand="block" class="ion-margin" (click)="openWikipage(tree)">Check Wikipedia</ion-button>
+  </ion-card>
+</ion-content>

@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600&display=swap');
+
+$nunito: 'Nunito', sans-serif;
+
+
+
+.header-background {
+    --background: #099324;
+    --background: linear-gradient(120deg, #099324 0%, #99E916 100%);
+    ion-title{
+        --color: #fff;
+    }    
+}
+ion-content{
+    // --background: linear-gradient(180deg, #099324 0%, #99E916 100%);
+    .cards{
+        height: auto;
+        background-color: #E0F2E4;
+        border-top-left-radius: 25px;
+        border-top-right-radius: 25px;
+        margin-top: -70px;
+        padding-top: 100px;
+        padding-bottom: 200px;
+    
+        .details{
+            margin-left: 20px;
+            margin-right: 20px;
+            
+            ion-card{
+                border: 2px solid #099324;
+
+                .headerItem{
+                    margin-left: -20px;
+                }
+                
+                ion-label{
+                    font-family: $nunito;
+                }
+                
+                ion-card-content{
+                    font-family: $nunito;
+                }
+                #date{
+                    color:blue;
+                }
+            }
+            
+        }
+        p{
+            font-size: 14px;
+            line-height: 22px;
+            font-weight: 300;
+            color: #8c8c8c;
+    
+            margin: 0;
+        }
+    }
+}
+

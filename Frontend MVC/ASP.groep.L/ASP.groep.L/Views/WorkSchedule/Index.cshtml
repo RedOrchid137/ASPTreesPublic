@@ -1,0 +1,52 @@
+﻿@model IEnumerable<ASP.groep.L.Domain.WorkSchedule>
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-success">WorkSchedules</h2>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="WorkSchedule" asp-action="Create" class="btn btn-success">Add a new WorkSchedule</a>
+        </div>
+    </div>
+    <br />
+
+    @if (Model.Count() > 0)
+    {
+        <table class="table table-bordered table-striped" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Employee</th>
+                    <th>Planner</th>
+                    <th>Description</th>
+                    <th>Changes</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var workSchedule in Model)
+                {
+                    <tr>
+                        <td width="5%">@workSchedule.Id</td>
+                        <td width="10%">@workSchedule.Employee.FirstName @workSchedule.Employee.LastName</td>
+                        <td width="10%">@workSchedule.Planner.FirstName @workSchedule.Planner.LastName</td>
+                        <td width="15%">@workSchedule.Description</td>
+                        
+                        <td width="20%">
+                            <div class="w-100 btn-group" role="group">
+                                <a asp-controller="WorkSchedule" asp-action="Update" asp-route-Id="@workSchedule.Id" class="btn btn-success mx-1">Update</a>
+                                <a asp-controller="WorkSchedule" asp-action="Delete" asp-route-Id="@workSchedule.Id" class="btn btn-danger mx-1">Delete</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No WorkSchedules created yet.</p>
+    }
+
+
+</div>

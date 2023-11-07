@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600&display=swap');
+
+$nunito: 'Nunito', sans-serif;
+
+
+.header-background {
+    --background: #099324;
+    --background: linear-gradient(120deg, #099324 0%, #99E916 100%);
+    ion-title{
+        --color: #fff;
+    }    
+}
+
+.Detail{
+    ion-card{
+        font-family: $nunito;
+        background: linear-gradient(130deg, #099324 0%, #99E916 100%);
+        border: 3px solid green;
+        ion-item{
+            margin-left: -20px;
+        }
+        ion-icon{
+            color: #fff;
+            padding-bottom: 5%;
+        }
+        ion-card-title{
+            color: #fff;
+        }
+        ion-card-content{
+            color: #fff;
+        }
+    }
+}

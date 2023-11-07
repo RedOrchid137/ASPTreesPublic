@@ -1,0 +1,94 @@
+﻿@model EmployeeTask
+
+<form method="post" asp-action="Create" id="taskForm">
+    <div class="border p-3">
+        <div class="mb-3 row">
+            <h4 class="text-success">Tasks for this schedule:</h4>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="mb-3 form-group row">
+                    <div class="col-6">
+                        <label asp-for="Name"></label>
+                    </div>
+                    <div class="col-6">
+                        <label asp-for="Description"></label>
+                    </div>
+                </div>
+                <div class="mb-3 form-group row">
+                    <div class="col-6">
+                        <input type="text" asp-for="Name" id="name" class="form-control" />
+@*                        <span asp-validation-for="Name" class="text-danger"></span>*@
+                    </div>
+                    <div class="col-6">
+                        <input type="text" asp-for="Description" id="description" class="form-control" />
+
+@*                        <span asp-validation-for="Description" class="text-danger"></span>*@
+                    </div>
+                </div>
+                <div class="mb-3 form-group row">
+                    <div class="col">
+                        <label asp-for="scheduledStart">Start Time</label>
+                    </div>
+                    <div class="col">
+                        <label asp-for="scheduledStop">Stop Time</label>
+                    </div>
+                </div>
+                <div class="mb-3 form-group row">
+                    <div class="col">
+                        <input type="datetime-local" id="scheduledStart" asp-for="scheduledStart" class="form-control"/>
+@*                        <span asp-validation-for="scheduledStart" class="text-danger"></span>*@
+                    </div>
+                    <div class="col">
+                        <input type="datetime-local" id="scheduledStop" asp-for="scheduledStop" class="form-control"/>
+@*                        <span asp-validation-for="scheduledStop" class="text-danger"></span>*@
+                    </div>
+                </div>
+
+                <div class="mb-3 form-group row">
+                    <div class="col">
+                        <label asp-for="Zone"></label>
+                    </div>
+                    <div class="col">
+                        <label asp-for="Priority"></label>
+                    </div>
+                </div>
+                <div class="mb-3 form-group row">
+                    <div class="col">
+                        <select asp-for="ZoneId" id="zone" class ="form-control" asp-items="@ViewBag.ZoneId"></select>
+                    </div>
+                    <div class="col">
+                        <select asp-for="Priority" id="priority" class ="form-control" asp-items="@new SelectList(Enum.GetNames(typeof(Priority)))"></select>
+                    </div>
+                </div>
+
+                <div class="form-group row mt-3">    
+                    <input type="button" id="taskbut" class="btn btn-block btn-outline-success" value="Add to Schedule"></input>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script>
+$('#taskbut').click(function() {
+    const Priority = {
+	Low: 0,
+	Medium: 1,
+	High: 2,
+    }
+    var t = $("input[name='__RequestVerificationToken']").val();
+    var task = {
+        WorkScheduleId:null,
+        Name: $('#name').val(),
+        Description: $('#description').val(),
+        scheduledStart: $('#scheduledStart').val(),
+        scheduledStop: $('#scheduledStop').val(),
+        ZoneId: parseInt($('#zone').val()),
+        Priority:Priority[$('#priority').val()],
+        Status:0
+    };
+    updateTasks(task)})
+
+        
+</script>

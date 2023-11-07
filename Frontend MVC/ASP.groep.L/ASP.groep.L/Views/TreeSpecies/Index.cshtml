@@ -1,0 +1,77 @@
+﻿@model IEnumerable<ASP.groep.L.Domain.TreeSpecies>
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-success">Tree Species</h2>
+        </div>
+        @if (@User.Claims.Where(e => e.Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/role").First().Value == "MVC Admin")
+        {
+            <div class="col-6 text-end">
+                <a asp-controller="TreeSpecies" asp-action="Create" class="btn btn-outline-success">Add new Tree Species</a>
+            </div>
+        }
+    </div>
+    <br />
+
+    @if (Model.Count() > 0)
+    {
+            <table class="table table-bordered table-striped" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>
+                            ID
+                        </th>
+                        <th>
+                            Name
+                        </th>
+                        <th>
+                            Tree Image
+                        </th>
+                        <th>
+                            Description
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach (var TreeSpecies in Model)
+                {
+                    <tr>
+                        <td width="5%">@TreeSpecies.Id</td>
+                        <td width="10%">@TreeSpecies.Name</td>
+                        <td width="20%">
+                            <img src="@Url.Content(TreeSpecies.PicturePath)" style="width: 200px; height: 200px;" />
+                        </td>
+                        <td width="30%">@TreeSpecies.Description</td>
+                        <td width="35%">
+                            @if (@User.Claims.Where(e => e.Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/role").First().Value == "MVC Admin")
+                            {
+                            <div class="w-100 btn-group" role="group">                  
+                                <a asp-controller="TreeSpecies" asp-action="Update" asp-route-Id="@TreeSpecies.Id" class="btn btn-primary mx-1">Update</a>
+                                <a asp-controller="TreeSpecies" asp-action="Details" asp-route-Id="@TreeSpecies.Id" class="btn btn-secondary mx-1">Details</a>
+                                <a asp-controller="TreeSpecies" asp-action="Delete" asp-route-Id="@TreeSpecies.Id" class="btn btn-danger mx-1">Delete</a>
+
+                                </div>
+                            <div class="w-100 btn-group" style="margin-top:10px;" role="group">  
+                                <a href = "@TreeSpecies.MaintenancePlan.Link" class="btn btn-primary mx-1" target="_blank">PDF</a>
+                                <a href = "@TreeSpecies.MaintenancePlan.QRCode" class="btn btn-primary mx-1" target="_blank">QR Code</a>
+                            </div>
+                            }
+                            else
+                            {
+                                <a asp-controller="TreeSpecies" asp-action="Details" asp-route-Id="@TreeSpecies.Id" class="btn btn-secondary mx-1">Details</a>
+                            }
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No items created yet</p>
+    }
+
+
+</div>

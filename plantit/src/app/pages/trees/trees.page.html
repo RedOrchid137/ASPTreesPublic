@@ -1,0 +1,26 @@
+<ion-header [translucent]="true">
+  <ion-toolbar class="header-background">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Tree Info</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngIf="!trees">
+    <ion-card-content>No Trees Found</ion-card-content>
+  </ion-card>
+  <ion-list *ngIf="trees">
+    <ion-item button *ngFor="let tree of trees" [routerLink]="tree.id">
+      <ion-avatar slot="start">
+        <img [src]="tree.picturePath" />
+      </ion-avatar>
+
+      <ion-label class="ion-text-wrap">
+        <h3>{{ tree.name }}</h3>
+        <!-- <p>{{ tree.zone.name }}</p> -->
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

@@ -1,0 +1,49 @@
+﻿@model IEnumerable<Zone>
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-success">Zones</h2>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="Zone" asp-action="Create" class="btn btn-outline-success">Add a new Zone</a>
+        </div>
+    </div>
+    <br/>
+
+    @if (Model.Count() > 0)
+    {
+            <table class="table table-bordered table-striped" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Zone ID</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach (var Zone in Model)
+                {
+                    <tr>
+                        <td width="30%">@Zone.Id</td>
+                        <td width="30%">@Zone.Name</td>
+                        <td width="30%">@Zone.Description</td>
+                        <td width="10%">
+                            <div class="w-100 btn-group" role="group">
+                                <a asp-controller="Zone" asp-action="Update" asp-route-Id="@Zone.Id" class="btn btn-success mx-1">Update</a>
+                                <a asp-controller="Zone" asp-action="Details" asp-route-Id="@Zone.Id" class="btn btn-secondary mx-1">Details</a>
+                                <a asp-controller="Zone" asp-action="Delete" asp-route-Id="@Zone.Id" class="btn btn-danger mx-1">Delete</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+    }
+    else
+    {
+       <p>No items created yet</p>
+    }
+
+
+</div>

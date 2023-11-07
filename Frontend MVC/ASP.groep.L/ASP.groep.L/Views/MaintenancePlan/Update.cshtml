@@ -1,0 +1,60 @@
+﻿@model MaintenancePlan
+<h1>TreeSpecies.Name</h1>
+
+<form method="post" asp-action="Update" enctype="multipart/form-data">
+    <div class="border p-3">
+        <div class="mb-3 row">
+            <h2 class="text-success">Update this Maintenance Plan</h2>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="mb-3 row">
+                    <div class="col-3">
+                        <label asp-for="Title"></label>
+                    </div>
+                    <div class="col-3">
+                        <label asp-for="Season"></label>
+                    </div>
+                    <div class="col-3">
+                        <label asp-for="Description"></label>
+                    </div>
+                    <div class="col-3">
+                        <label asp-for="PlanFile"></label>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <div class="col-3">
+                        <input asp-for="Title" class="form-control" />
+                        <span asp-validation-for="Title" class="text-danger"></span>
+                    </div>
+                    <div class="col-3">
+                        <select asp-for="Season" class="form-control" asp-items="ViewBag.Season"></select>
+                        <span asp-validation-for="Season" class="text-danger"></span>
+                    </div>
+                    <div class="col-3">
+                        <input asp-for="Description" class="form-control" />
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                    <div class="col-3">
+                        <input asp-for="PlanFile" class="form-control" />
+                        <span asp-validation-for="PlanFile" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <div class="col-8 offset-2 row">
+                        <div class="col">
+                            <input type="submit" class="btn btn-outline-success w-75" value="Create" />
+                        </div>
+                        <div class="col">
+                            <a asp-controller="TreeSpecies" asp-action="Index" class="btn btn-outline-danger w-75">Back</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts{ 
+    @{ <partial name="_ValidationScriptsPartial" /> }
+}

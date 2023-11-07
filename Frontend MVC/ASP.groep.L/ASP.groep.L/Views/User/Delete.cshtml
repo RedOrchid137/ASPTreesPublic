@@ -1,0 +1,47 @@
+﻿@model User
+
+<form method="post" asp-action="PostDelete">
+    <input asp-for="Id" hidden />
+    <div class="border p-3">
+        @*<div asp-validation-summary="ModelOnly" class="text-danger"></div>*@
+        <div class="mb-3 row">
+            <h2 class="text-success">Delete an Employee</h2>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="mb-3 row">
+                    <div class="col-4">
+                        <label asp-for="Email"></label>
+                    </div>
+                    <div class="col-4">
+                        <label asp-for="FirstName"></label>
+                    </div>
+                    <div class="col-4">
+                        <label asp-for="LastName"></label>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <div class="col-4">
+                        <input asp-for="Email" disabled class="form-control" />
+                    </div>
+                    <div class="col-4">
+                        <input asp-for="FirstName" disabled class="form-control" />
+                    </div>
+                    <div class="col-4">
+                        <input asp-for="LastName" disabled class="form-control" />
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <div class="col-8 offset-2 row">
+                        <div class="col">
+                            <input type="submit" class="btn btn-outline-danger w-75" value="Delete" />
+                        </div>
+                        <div class="col">
+                            <a asp-action="Index" asp-route-role=@Model.Role class="btn btn-outline-success w-75">Back</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

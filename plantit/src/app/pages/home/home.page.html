@@ -1,0 +1,120 @@
+<ion-content>
+  <div class="menu">
+    <ion-buttons slot="start" class="menu_btn">
+      <ion-menu-button color="light"></ion-menu-button>
+    </ion-buttons>
+  </div>
+  <div class="container">
+    <app-login-button *ngIf="(auth.isAuthenticated$ | async) === false"></app-login-button>
+    <app-logout-button *ngIf="auth.isAuthenticated$ | async"></app-logout-button>
+  </div>
+  <div class="top" *ngIf="auth.user$ | async as user">
+    <div class="nameText">
+      <p>Hi <span>{{user.name}}</span></p>
+      <h6>{{user.email}}</h6>
+      <small>2022-2023</small>
+    </div>
+    <div class="imageThumbnail">
+      <img [src]="user.picture">
+    </div>
+  </div>
+
+  <div class="middleBox">
+    <div class="firstDiv">
+      <img src="https://cdn-icons-png.flaticon.com/512/3208/3208615.png"/>
+      <p>{{percentageCompleted}} %</p>
+      <h6>Completed Tasks</h6>
+    </div>
+    <div class="secondDiv">
+      <img src="https://cdn-icons-png.flaticon.com/512/4119/4119953.png">
+      <p>{{treesPlanted}}</p>
+      <h6>Trees planted</h6>
+    </div>
+  </div>
+
+  <div class="bottomDiv">
+    <div class="gridDiv">
+      <div class="today">
+        <ion-item lines="none">
+          <ion-label style="font-weight: 800; font-size: 2em">
+            Planning
+            <p>{{today | date:'fullDate'}}</p>
+          </ion-label>
+        </ion-item>
+      </div>
+      <!-- <ion-card *ngFor="let item of todoList; let i = index" class="ion-margin">
+        <ion-card-header>
+          <ion-card-subtitle [style.color]="item.value.itemPriority === 'high' ? 'red' : (item.value.itemPriority === 'low' ? 'green' : 'orange')">
+            {{item.value.itemCategory}}
+          </ion-card-subtitle>
+
+          <ion-item>
+            <ion-icon *ngIf="item.value.itemPriority === 'high' " color="danger" size="small" name="ellipse"></ion-icon>
+            <ion-icon *ngIf="item.value.itemPriority === 'middle' " color="warning" size="small" name="ellipse"></ion-icon>
+            <ion-icon *ngIf="item.value.itemPriority === 'low' " color="primary" size="small" name="ellipse"></ion-icon>
+            <ion-label>{{item.value.itemName}}</ion-label>
+          </ion-item>
+        </ion-card-header>
+
+        <ion-card-content>
+          <ion-label id="date">Due {{item.value.itemDueDate | date: 'fullDate'}}</ion-label>
+        </ion-card-content>
+
+        <ion-row>
+          <ion-item>
+            <ion-checkbox slot="start" (click)="markAsDone(item.key)"></ion-checkbox>
+            <p>Mark as done</p>
+          </ion-item>
+          <ion-item (click)="update(item)">
+            <ion-icon name="checkmark-done-outline"></ion-icon>
+            <p>Update </p>
+          </ion-item> 
+
+          <ion-item button (click)="delete(item.key)">
+            <ion-icon name="trash-outline"></ion-icon>
+            <p>Cancel</p>
+          </ion-item>
+        </ion-row>
+
+      </ion-card> -->
+      <ion-card *ngFor="let task of activeTask; let i = index" class="ion-margin">
+        <ion-card-header>
+          <ion-card-subtitle [style.color]="task.value.priority === 'high' ? 'red' : (task.value.priority === 'low' ? 'green' : 'orange')">
+            {{task.value.priority}}
+          </ion-card-subtitle>
+          <div class="headerItem">
+            <ion-item>
+              <ion-icon *ngIf="task.value.priority === 'high' " color="danger" size="small" name="ellipse"></ion-icon>
+              <ion-icon *ngIf="task.value.priority === 'middle' " color="warning" size="small" name="ellipse"></ion-icon>
+              <ion-icon *ngIf="task.value.priority === 'low' " color="primary" size="small" name="ellipse"></ion-icon>
+              <ion-label> {{task.value.name}}</ion-label>
+            </ion-item>
+            </div>
+        </ion-card-header>
+
+        <ion-card-content>
+          <ion-label id="date">Due {{task.value.workDay | date: 'fullDate'}}</ion-label>
+          <!-- <ion-label>{{task?.value.description}} -->
+        </ion-card-content>
+
+        <ion-row>
+          <ion-item button (click)="markAsDone(task.key)">
+            <ion-icon name="checkmark-done-outline"></ion-icon>
+            <p>Done</p>
+          </ion-item>
+
+          <ion-item button (click)="delete(task.key)">
+            <ion-icon name="trash-outline"></ion-icon>
+            <p>Cancel</p>
+          </ion-item>
+        </ion-row>
+      </ion-card>
+
+      <ion-fab vertical="bottom" horizontal="end">
+        <ion-fab-button (click)="addTask()" style="color: red;">
+          <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
+    </div>
+  </div>
+</ion-content>

@@ -1,0 +1,40 @@
+<ion-header [translucent]="true">
+  <ion-toolbar class="header-background">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Zone Info</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-searchbar animated="true" placeholder="Zoek in Zones" show-clear-button="focus" (ionchange)="handleChange($event)"></ion-searchbar>
+  <ion-card *ngIf="!zones">
+    <ion-card-content>No Zones Found</ion-card-content>
+  </ion-card>
+
+  <div class="cards">
+    <ion-card *ngFor="let zone of zones; let i = index">
+      <img [src]="imageUrl">
+      <ion-card-header>
+        <h2>
+          {{zone.Category}}
+        </h2>
+        <ion-item>
+          <ion-icon color="secondary" size="small" name="ellipse"></ion-icon>
+          <ion-label>{{zone.description}}</ion-label>
+        </ion-item>
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-label style="color: red; font-weight: bold; margin-left: 20px;">[ID: {{zone.id}}] - </ion-label>
+        <ion-label> 
+          <ion-item button [routerLink]="zone.id">
+            <ion-icon name="folder-open-outline"></ion-icon>
+            <p>More</p>
+          </ion-item>
+        </ion-label>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

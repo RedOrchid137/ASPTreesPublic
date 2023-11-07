@@ -1,0 +1,61 @@
+﻿@model Zone
+
+<form method="post" asp-action="Create">
+    <div class="border p-3">
+        @*<div asp-validation-summary="ModelOnly" class="text-danger"></div> ~ Voor informatie aan de developer*@
+        <div class="mb-3 row">
+            <h2 class="text-success">Add a Zone</h2>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="mb-3 row">
+                    <div class="col-4">
+                        <label asp-for="Name"></label>
+                    </div>
+                    <div class="col-4">
+                        <label asp-for="Description"></label>
+                    </div>
+                    <div class="col-4">
+                        <label asp-for="SurfaceArea"></label>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <div class="col-4">
+                        <input asp-for="Name" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div class="col-4">
+                        <input asp-for="Description" class="form-control" />
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                    <div class="col-4">
+                        <input asp-for="SurfaceArea" class="form-control" />
+                        <span asp-validation-for="SurfaceArea" class="text-danger"></span>
+                    </div>
+                    <div class="col-6">
+                        <label asp-for="TreeSpeciesId" class="control-label"></label>
+                        <select asp-for="TreeSpeciesId" class ="form-control" asp-items="ViewBag.TreeSpeciesId"></select>
+                    </div>
+                    <div class="col-6">
+                        <label asp-for="SiteId" class="control-label"></label>
+                        <select asp-for="SiteId" class ="form-control" asp-items="ViewBag.SiteId"></select>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <div class="col-8 offset-2 row">
+                        <div class="col">
+                            <input type="submit" class="btn btn-outline-success w-75" value="Create" />
+                        </div>
+                        <div class="col">
+                            <a asp-action="Index" class="btn btn-outline-danger w-75">Back</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts{ 
+    @{ <partial name="_ValidationScriptsPartial" /> }
+}

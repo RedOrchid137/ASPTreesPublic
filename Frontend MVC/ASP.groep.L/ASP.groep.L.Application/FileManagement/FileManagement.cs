@@ -1,18 +1,8 @@
-﻿using ASP.groep.L.Application.CQRS.Commands;
-using ASP.groep.L.Application.Extensions;
+﻿using System.Drawing;
+using System.Drawing.Imaging;
+using System.Text.Json;
 using Firebase.Auth;
 using Firebase.Storage;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Drawing;
-using System.Drawing.Imaging;
-using System.Linq;
-using System.Text;
-using System.Text.Json;
-using System.Threading.Tasks;
-using System.Drawing.Imaging;
-using System.IO;
 
 namespace ASP.groep.L.Application.FileManagement
 {
@@ -24,18 +14,20 @@ namespace ASP.groep.L.Application.FileManagement
             using (StreamReader r = new StreamReader(Directory.GetCurrentDirectory()+"/creds.json"))
             {
                 Auth ?creds = JsonSerializer.Deserialize<Auth>(r.ReadToEnd());
-                
-                var auth = new FirebaseAuthProvider(new FirebaseConfig(creds!.APIKey));
+                var config = new FirebaseAuthConfig
+                {
+                    ApiKey = creds!.APIKey
+                };
+                var auth = new FirebaseAuthClient(config);
 
                 //authentication
 
                 var a = await auth.SignInAnonymouslyAsync();
-
                 var storage = new FirebaseStorage(
                     "groepltrees.appspot.com",
                      new FirebaseStorageOptions
                      {
-                         AuthTokenAsyncFactory = () => Task.FromResult(a.FirebaseToken),
+                         AuthTokenAsyncFactory = () => Task.FromResult(a.User.Credential.IdToken),
                          ThrowOnCancel = true,
                      });
 
@@ -60,7 +52,11 @@ namespace ASP.groep.L.Application.FileManagement
             using (StreamReader r = new StreamReader(Directory.GetCurrentDirectory() + "/creds.json"))
             {
                 Auth? creds = JsonSerializer.Deserialize<Auth>(r.ReadToEnd());
-                var auth = new FirebaseAuthProvider(new FirebaseConfig(creds!.APIKey));
+                var config = new FirebaseAuthConfig
+                {
+                    ApiKey = creds!.APIKey
+                };
+                var auth = new FirebaseAuthClient(config);
 
                 //authentication
 
@@ -70,7 +66,7 @@ namespace ASP.groep.L.Application.FileManagement
                     "groepltrees.appspot.com",
                      new FirebaseStorageOptions
                      {
-                         AuthTokenAsyncFactory = () => Task.FromResult(a.FirebaseToken),
+                         AuthTokenAsyncFactory = () => Task.FromResult(a.User.Credential.IdToken),
                          ThrowOnCancel = true,
                      })
                     .Child("pdf")
@@ -92,7 +88,11 @@ namespace ASP.groep.L.Application.FileManagement
             {
                 Auth? creds = JsonSerializer.Deserialize<Auth>(r.ReadToEnd());
 
-                var auth = new FirebaseAuthProvider(new FirebaseConfig(creds!.APIKey));
+                var config = new FirebaseAuthConfig
+                {
+                    ApiKey = creds!.APIKey
+                };
+                var auth = new FirebaseAuthClient(config);
 
                 //authentication
 
@@ -102,7 +102,7 @@ namespace ASP.groep.L.Application.FileManagement
                     "groepltrees.appspot.com",
                      new FirebaseStorageOptions
                      {
-                         AuthTokenAsyncFactory = () => Task.FromResult(a.FirebaseToken),
+                         AuthTokenAsyncFactory = () => Task.FromResult(a.User.Credential.IdToken),
                          ThrowOnCancel = true,
                      });
 
@@ -119,9 +119,14 @@ namespace ASP.groep.L.Application.FileManagement
         {
             using (StreamReader r = new StreamReader(Directory.GetCurrentDirectory() + "/creds.json"))
             {
+
                 Auth? creds = JsonSerializer.Deserialize<Auth>(r.ReadToEnd());
 
-                var auth = new FirebaseAuthProvider(new FirebaseConfig(creds!.APIKey));
+                var config = new FirebaseAuthConfig
+                {
+                    ApiKey = creds!.APIKey
+                };
+                var auth = new FirebaseAuthClient(config);
 
                 //authentication
 
@@ -131,7 +136,7 @@ namespace ASP.groep.L.Application.FileManagement
                     "groepltrees.appspot.com",
                      new FirebaseStorageOptions
                      {
-                         AuthTokenAsyncFactory = () => Task.FromResult(a.FirebaseToken),
+                         AuthTokenAsyncFactory = () => Task.FromResult(a.User.Credential.IdToken),
                          ThrowOnCancel = true,
                      });
 

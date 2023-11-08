@@ -1,4 +1,4 @@
-﻿namespace ASP.groep.L.AdminMVC.MiddleWare
+﻿namespace ASP.groep.L.MVC.MiddleWare
 {
     public class ErrorResponseInfo
     {

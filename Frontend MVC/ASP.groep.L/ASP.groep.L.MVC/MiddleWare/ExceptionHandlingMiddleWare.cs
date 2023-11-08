@@ -3,7 +3,7 @@ using ASP.groep.L.Infrastructure.Exceptions;
 using FluentValidation;
 using System.Text.Json;
 
-namespace ASP.groep.L.AdminMVC.MiddleWare
+namespace ASP.groep.L.MVC.MiddleWare
 { 
 
     public class ExceptionHandlingMiddleWare

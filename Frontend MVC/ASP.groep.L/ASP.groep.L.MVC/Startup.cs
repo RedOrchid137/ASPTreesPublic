@@ -1,4 +1,4 @@
-﻿using ASP.groep.L.AdminMVC.MiddleWare;
+﻿using ASP.groep.L.MVC.MiddleWare;
 using ASP.groep.L.Application.CQRS.Behaviours;
 //using ASP.groep.L.Application.CQRS.Behaviours;
 using ASP.groep.L.Application.CQRS.Mappings;
@@ -18,7 +18,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
 
-namespace ASP.groep.L.WebAPI
+namespace ASP.groep.L.MVC
 {
     public class Startup
     {

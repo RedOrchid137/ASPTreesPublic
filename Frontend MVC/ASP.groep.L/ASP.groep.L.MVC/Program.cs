@@ -1,4 +1,4 @@
-namespace ASP.groep.L.WebAPI
+namespace ASP.groep.L.MVC
 {
     public class Program
     {
